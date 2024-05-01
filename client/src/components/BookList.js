@@ -1,14 +1,6 @@
-// Import everything needed to use the `useQuery` hook
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { getBooksQuery } from "../queries/queries";
 
-const getBooksQuery = gql`
-  {
-    books {
-      name
-      id
-    }
-  }
-`;
 export default function BookList() {
   const { loading, error, data } = useQuery(getBooksQuery);
   const displayBooks = () => {
