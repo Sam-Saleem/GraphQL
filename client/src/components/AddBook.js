@@ -1,5 +1,9 @@
 import { useQuery, useMutation } from "@apollo/client";
-import { getAuthorsQuery, addBookMutation } from "../queries/queries";
+import {
+  getAuthorsQuery,
+  addBookMutation,
+  getBooksQuery,
+} from "../queries/queries";
 import { useState } from "react";
 
 function AddBook() {
@@ -26,8 +30,12 @@ function AddBook() {
   };
   const submitForm = async (e) => {
     e.preventDefault();
-    const res = await addBook({ variables: { name, genre, authorId } });
+    const res = await addBook({
+      variables: { name, genre, authorId },
+      refetchQueries: [{ query: getBooksQuery }],
+    });
     console.log(res);
+
     // console.log(name, genre, authorId);
     // console.log("------>", addBookData);
     // console.log(addBookData);
