@@ -32,6 +32,7 @@ function AddBook() {
     e.preventDefault();
     const res = await addBook({
       variables: { name, genre, authorId },
+      // telling the get Books query to refetch whenever a new book is added in database
       refetchQueries: [{ query: getBooksQuery }],
     });
     console.log(res);
